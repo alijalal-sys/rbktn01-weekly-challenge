@@ -43,27 +43,27 @@ function daBears() {
 // Which function(s) access the "chair" variable and get "Too Big!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale1 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale1 = ["papaBear", "mamaBear"];
 
 // Which function(s) access the "feeling" variable and get "Hungry"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale2 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale2 = ["goldilocks"];
 
 // Which function(s) access the "porridge" variable and get "Too Cold!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale3 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale3 = ["mamaBear"];
 
 // Which function(s) access the "sleepy" variable and get undefined
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale4 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale4 = ["daBears", "mamaBear", "babyBear", "goldilocks"];
 
 // Which function(s) access the isFurry variable and get true
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear"];
 
 
 // *************
@@ -83,6 +83,28 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // CODE HERE...
 
+// As Pseudoclassical Class
+var Vehicle = function() {
+    // this is how we create a property
+    this.gasRemaining = 100;
+}
+
+// And Methodes
+Vehicle.prototype.drive = function() {
+    this.gasRemaining -= 25;
+};
+
+// Create the Objects
+var charger = new Vehicle();
+var mustang = new Vehicle();
+
+// Invoke Methodes
+charger.drive();
+mustang.drive();
+mustang.drive();
+
+console.log(charger) // gasRemaining = 75
+console.log(mustang) // gasRemaining = 50
 
 
 
@@ -105,9 +127,23 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // and should neither modify them nor break when encountering them.
 
 
-
-
 // CODE HERE...
+
+String.prototype.grammarPolice = function(string) {
+    // Here we create new var to save our original string as array
+    var newArr = string.toLowerCase().split('');
+    // And convert the first index To Upper Case
+    newArr[0] = newArr[0].toUpperCase();
+    // Iterate 
+    for (var i = 0; i < newArr.length; i++) {
+        // And Whenever you find a space Conver the index after it to UpperCase()
+        if (newArr[i] === ' ') {
+            newArr[i + 1] = newArr[i + 1].toUpperCase()
+        }
+    }
+    // Retrun it as string
+    return newArr.join('')
+}
 
 
 
@@ -126,6 +162,20 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // In all other cases, return "Different values"
 
 // CODE HERE...
+
+// I don't think this needs an explanition
+var valueType = function(arg1, arg2) {
+    if (arg1 === arg2) {
+        return 'Exactly the same';
+    } else if (arg1 == arg2 && arg1 !== arg2) {
+        return 'Same value, different types';
+    } else {
+        return 'Different values'
+    }
+}
+
+
+
 
 // *************
 // * PROBLEM 5 *
@@ -147,11 +197,20 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 var elephant = {
     name: 'Horton'
 }
-function large() {
 
+function large() {
     return 'My name is ' + this.name + ' and I am very heavy!'
 }
-  // CODE HERE...
+
+// CODE HERE...
+
+// Here We can bound them together
+var boundToElephant = large.bind(elephant);
+// And as long as bind() given a function as return 
+// we need to invoke it
+console.log(boundToElephant())
+
+
 
 // *************
 // * PROBLEM 6 *
@@ -164,6 +223,11 @@ function large() {
 // and return the bound function.
 
 // CODE HERE...
+
+var deathStar = function(capacity, crew) {
+    var bound = capacity.bind(crew);
+    return bound
+}
 
 
 // *************
@@ -178,3 +242,9 @@ function large() {
 // The closure function will return the combined value of assets and liabilities.
 
 // CODE HERE...
+
+var accountingOffice = function(assets) {
+    return function (liabilities) {
+        return assets + liabilities;
+    }
+}
